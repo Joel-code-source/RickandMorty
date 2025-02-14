@@ -1,0 +1,44 @@
+const descryptId = (id) => {
+    return parseInt(id, 36)
+}
+
+
+//Função respomsavel por fazer a requisição a API
+const loadCharacter = async () => {
+    try {
+        //request / response =. res
+        const res = await fetch(`${url}/${id}`)
+        if (!res.ok) {
+            throw new Error(`erro ao carregar o personagem`)
+        }
+        const data = await res.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+const loadAll = async () => {
+    const urlParams = new URLSearchParams(
+        windows.location.search
+    )
+    const idParam = urlParams.get('id')
+    console.log(idParam)
+}
+if (!idParam) {
+    //coloar o usario na paginal inicial
+    console.log('ID não enoontrado na url')
+    return
+}
+const IdDescrypted = descryptId(idParam)
+console.log(IdDescrypted)
+const baseUrl = `https://rickandmortyapi.com/api/character`
+try{
+     const character = loadCharacter(baseUrl, IdDescrypted)
+     console.assert(character)
+}catch(error){
+console.log(error)}
+
+loadall()
+const showCharacter = (character) => {
+console.log(character)
+}
